@@ -7,7 +7,6 @@ $item_key = '';
 $err_msgs = [];
 
 $items = ['バッグ', '靴', '時計', 'ネックレス', 'ピアス'];
-$prices = [10000, 6000, 15000, 12000, 8000];
 
 // バリデーション
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,9 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($err_msgs)) {
-        $price = $prices[$item_key];
-        // URL パラメータで金額を渡す
-        header("Location: 05_confirm.php?price=" . $price);
+        $item = $items[$item_key];
+        header('Location: 05_confirm.php?item=' . $item);
         exit;
     }
 }
