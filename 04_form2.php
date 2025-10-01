@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             <label for="name">氏名</label><br>
-            <input type="text" id="name" name="name" value="<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8')?>">
+            <input type="text" id="name" name="name" value="<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>">
         </div>
 
         <div>
@@ -82,7 +82,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div>
             <select name="item_key" id="item_key">
                 <?php foreach ($items as $key => $label): ?>
-                    <option value="<?= $key ?>">
+                    <option value="<?= $key ?>" <?= ($item_key == $key) ? 'selected' : '' ?>>
                         <?= $label ?>
                     </option>
                 <?php endforeach; ?>
