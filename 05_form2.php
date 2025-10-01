@@ -7,7 +7,7 @@ $item_key = '';
 $err_msgs = [];
 
 $items = ['バッグ', '靴', '時計', 'ネックレス', 'ピアス'];
-$submitted = null;
+$prices = [10000, 6000, 15000, 12000, 8000];
 
 // バリデーション
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -27,14 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (empty($err_msgs)) {
-        //送信時点の値を表示用に確定
-        $submitted = [
-            'name'  => $name,
-            'tel'   => $tel,
-            'email' => $email,
-            'item'  => $items[$item_key],
-        ];
-        $item_key = 0; // バッグに戻す
+        $price = $prices[$item_key];
+        // URL パラメータで金額を渡す
+        header("Location: 05_confirm.php?price=" . $price);
+        exit;
     }
 }
 
@@ -65,7 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         <div>
             <label for="name">氏名</label><br>
-            <input type="text" id="name" name="name" value="<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8')?>">
+            <input type="text" id="name" name="name" value="<?= htmlspecialchars($name, ENT_QUOTES, 'UTF-8') ?>">
         </div>
 
         <div>
@@ -94,28 +90,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <input type="submit" value="送信">
         </div>
     </form>
-
-    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($err_msgs)): ?>
-        <h3>以下の内容が送信されました。</h3>
-        <table>
-            <tr>
-                <td>氏名:</td>
-                <td><?= htmlspecialchars($submitted['name'], ENT_QUOTES, 'UTF-8') ?></td>
-            </tr>
-            <tr>
-                <td>電話番号:</td>
-                <td><?= htmlspecialchars($submitted['tel'], ENT_QUOTES, 'UTF-8') ?></td>
-            </tr>
-            <tr>
-                <td>メールアドレス:</td>
-                <td><?= htmlspecialchars($submitted['email'], ENT_QUOTES, 'UTF-8') ?></td>
-            </tr>
-            <tr>
-                <td>購入するもの:</td>
-                <td><?= $submitted['item'] ?></td>
-            </tr>
-        </table>
-    <?php endif; ?>
 
 </body>
 
