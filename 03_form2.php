@@ -29,16 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-
-    <?php if ($_SERVER['REQUEST_METHOD'] !== 'POST'): ?>
-        <h1>点数を入力してください</h1>
-    <?php else: ?>
-        <?php if ($err_msg !== ''): ?>
-            <h1>点数を入力してください</h1>
-            <ul>
-                <li><?= $err_msg ?></li>
-            </ul>
-        <?php endif; ?>
+    <h1>点数を入力してください</h1>
+    <?php if ($err_msg !== ''): ?>
+        <ul>
+            <li><?= $err_msg ?></li>
+        </ul>
     <?php endif; ?>
 
     <form action="" method="post">
