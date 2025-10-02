@@ -23,21 +23,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <body>
 
-    <?php if ($_SERVER['REQUEST_METHOD'] !== 'POST'): ?>
-        <h1>点数を入力してください</h1>
-    <?php else: ?>
-        <?php if ($err_msg !== ''): ?>
-            <h1>点数を入力してください</h1>
-            <ul>
-                <li><?= $err_msg ?></li>
-            </ul>
+    <?php if ($score !== ''): ?>
+        <?php if ($score >= 60): ?>
+            <h1>合格です</h1>
         <?php else: ?>
-            <?php if ($score >= 60): ?>
-                <h1>合格です</h1>
-            <?php else: ?>
-                <h1>不合格です</h1>
-            <?php endif; ?>
+            <h1>不合格です</h1>
         <?php endif; ?>
+    <?php elseif ($err_msg !== ''): ?>
+        <h1>点数を入力してください</h1>
+        <ul>
+            <li><?= $err_msg ?></li>
+        </ul>
+    <?php else: ?>
+        <h1>点数を入力してください</h1>
     <?php endif; ?>
 
     <form action="" method="post">
