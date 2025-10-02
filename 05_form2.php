@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <h3>個人情報を入力してください</h3>
 
-    <?php if ($_SERVER['REQUEST_METHOD'] === 'POST' && $err_msgs): ?>
+    <?php if ($err_msgs): ?>
         <h1>エラーメッセージ</h1>
         <ul>
             <?php foreach ($err_msgs as $m): ?>
